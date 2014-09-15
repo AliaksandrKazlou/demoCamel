@@ -15,4 +15,11 @@ public abstract class Task {
 
     protected abstract void prepare ();
 
+    public Object getBody () {
+        return body;
+    }
+
+    public Map<String, Object> getHeaders () {
+        return headers;
+    }
 }

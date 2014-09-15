@@ -8,15 +8,21 @@
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd"
         >
 
-    <bean id="invoker" class="tasks.Invoker">
+    <bean id="invoker" class="Invoker">
         <property name="producer" ref="producerTemplate"/>
     </bean>
-    
+
+    <bean id="printer" class="Printer"/>
+
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <camel:template id="producerTemplate"/>
         <route>
             <from uri="direct:start"/>
             <to uri="activemq:queue:startQ"/>
+        </route>
+        <route>
+            <from uri="activemq:queue:startQ"/>
+            <to uri="bean:printer?method=print"/>
         </route>
     </camelContext>
 

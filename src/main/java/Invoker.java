@@ -1,6 +1,5 @@
-package tasks;
-
 import org.apache.camel.ProducerTemplate;
+import tasks.Task;
 
 public class Invoker {
 
@@ -13,7 +12,7 @@ public class Invoker {
     }
 
     public void execute(Task task) {
-        producer.sendBodyAndHeaders(DESTINATION, task.body, task.headers);
+        producer.sendBodyAndHeaders(DESTINATION, task.getBody(), task.getHeaders());
     }
 
 }
