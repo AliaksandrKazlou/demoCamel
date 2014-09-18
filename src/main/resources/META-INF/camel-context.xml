@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd"
+        >
+
+    <bean id="invoker" class="com.epam.demoCamel.Invoker">
+        <property name="producer" ref="producerTemplate"/>
+    </bean>
+
+    <bean id="serialization" class="com.epam.demoCamel.processor.ActiveMQWrapper"/>
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+        <camel:template id="producerTemplate"/>
+        <route>
+            <from uri="direct:start"/>
+            <choice>
+                <when>
+                    <simple>${headers.JMSType} == 'test2'</simple>
+                    <to uri="activemq:topic:Topic"/>
+                </when>
+                <when>
+                    <simple>${headers.Task} == 'test6'</simple>
+                    <aggregate completionSize="10" groupExchanges="true">
+                        <correlationExpression>
+                            <simple>${headers.Task}</simple>
+                        </correlationExpression>
+                        <process ref="serialization"/>
+                        <to uri="activemq:queue:Queue"/>
+                    </aggregate>
+                </when>
+                <otherwise>
+                    <to uri="activemq:queue:Queue"/>
+                </otherwise>
+            </choice>
+        </route>
+    </camelContext>
+</beans>

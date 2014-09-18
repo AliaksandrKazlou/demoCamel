@@ -1,9 +1,13 @@
-package tasks;
+package com.epam.demoCamel.tasks;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Task {
+
+    public static final String TASK = "Task";
+
+    protected Integer repeatCount = 1;
 
     protected Object body;
 
@@ -22,4 +26,9 @@ public abstract class Task {
     public Map<String, Object> getHeaders () {
         return headers;
     }
+
+    public Integer getRepeatCount () {
+        return repeatCount;
+    }
+
 }

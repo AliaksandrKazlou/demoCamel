@@ -2,7 +2,7 @@ apply plugin:'application'
 apply plugin:'idea'
 
 version = '1.0'
-mainClassName = "Main"
+mainClassName = "com.epam.demoCamel.Main"
 
 repositories {
     mavenCentral()
@@ -19,6 +19,7 @@ dependencies {
     compile group: 'org.apache.camel', name: 'camel-spring', version: '2.13.0'
     compile group: 'org.apache.camel', name: 'camel-jms', version: '2.13.0'
     compile group: 'org.apache.camel', name: 'camel-stream', version:'2.13.0'
+    compile group: 'org.apache.camel', name: 'camel-jxpath', version:'2.13.0'
     compile group: 'org.apache.activemq', name: 'activemq-camel', version: '5.9.0'
     compile group: 'org.apache.activemq', name: 'activemq-pool', version: '5.9.0'
     compile(group: 'org.apache.xbean', name: 'xbean-spring', version: '3.15') {
