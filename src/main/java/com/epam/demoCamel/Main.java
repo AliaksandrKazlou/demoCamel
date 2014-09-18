@@ -1,7 +1,7 @@
-package com.epam.demoCamel;
+package com.epam.democamel;
 
-import com.epam.demoCamel.exception.TaskNotFoundException;
-import com.epam.demoCamel.tasks.*;
+import com.epam.democamel.exception.TaskNotFoundException;
+import com.epam.democamel.tasks.*;
 import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
 
 public class Main {

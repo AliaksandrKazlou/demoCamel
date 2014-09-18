@@ -1,6 +1,6 @@
-package com.epam.demoCamel.tasks;
+package com.epam.democamel.tasks;
 
-import com.epam.demoCamel.entity.Person;
+import com.epam.democamel.entity.Person;
 
 public class SimpleObjectOnTopic extends Task {
 

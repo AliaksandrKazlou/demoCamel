@@ -1,4 +1,4 @@
-package com.epam.demoCamel.tasks;
+package com.epam.democamel.tasks;
 
 public class PlainText extends Task {
 

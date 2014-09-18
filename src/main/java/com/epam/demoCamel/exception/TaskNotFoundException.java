@@ -1,4 +1,4 @@
-package com.epam.demoCamel.exception;
+package com.epam.democamel.exception;
 
 public class TaskNotFoundException extends Exception {
 

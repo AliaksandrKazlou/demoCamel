@@ -1,7 +1,7 @@
-package com.epam.demoCamel;
+package com.epam.democamel;
 
 import org.apache.camel.ProducerTemplate;
-import com.epam.demoCamel.tasks.Task;
+import com.epam.democamel.tasks.Task;
 
 public class Invoker {
 

@@ -1,4 +1,4 @@
-package com.epam.demoCamel.entity;
+package com.epam.democamel.entity;
 
 import java.io.Serializable;
 
