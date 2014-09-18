@@ -1,5 +1,6 @@
 package com.epam.demoCamel.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student extends Person {
@@ -8,6 +9,7 @@ public class Student extends Person {
 
     public Student (String name, Integer age) {
         super(name, age);
+        courses = new ArrayList<>();
     }
 
     public void addCourse (String courseName) {

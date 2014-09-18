@@ -18,7 +18,7 @@
             <from uri="direct:start"/>
             <choice>
                 <when>
-                    <simple>${headers.JMSType} == 'test2'</simple>
+                    <simple>${headers.Task} == 'test2'</simple>
                     <to uri="activemq:topic:Topic"/>
                 </when>
                 <when>

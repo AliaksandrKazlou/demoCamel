@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ComplexObjectOnQueue extends Task{
+public class ComplexObjectOnQueue extends Task {
 
     public static final Integer COUNT_STUDENT = 10;
 
@@ -17,15 +17,15 @@ public class ComplexObjectOnQueue extends Task{
     @Override
     protected void prepare () {
         body = populate(COUNT_STUDENT);
-        headers.put(TASK,TASK_NAME);
+        headers.put(TASK, TASK_NAME);
     }
 
-    private List<Student> populate(Integer count) {
-        List<Student> students = new ArrayList<>(count);
-        for(Student student : students) {
-            student = new Student("Name" + new Random().nextInt(), new Random().nextInt());
-            for(int i = 0; i < COUNT_STUNDENT_COURSES; i++ ) {
-                student.addCourse("Course " + new Random().nextInt());
+    private List<Student> populate (Integer count) {
+        List<Student> students = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            students.add(new Student("Name" + new Random().nextInt(), new Random().nextInt()));
+            for (int j = 0; j < COUNT_STUNDENT_COURSES; j++) {
+                students.get(i).addCourse("Course " + new Random().nextInt());
             }
         }
         return students;

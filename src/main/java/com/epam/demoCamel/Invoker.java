@@ -19,7 +19,7 @@ public class Invoker {
 
             System.out.println("Sending message...");
             producer.sendBodyAndHeaders(DESTINATION, task.getBody(), task.getHeaders());
-            System.out.println("Message with body \" " + task.getBody().getClass().toString() + "\" sended");
+            System.out.println("Message with body \" " + task.getBody().toString() + "\" sended");
             i++;
         } while (i < task.getRepeatCount());
     }

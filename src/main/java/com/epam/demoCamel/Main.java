@@ -38,12 +38,12 @@ public class Main {
     private static void showHelp () {
         System.out.println("Available options:");
         System.out.println("-t [task_name] - execute task");
-        System.out.println("    task1 - Send simple object.Container type: Queue");
-        System.out.println("    task2 - Send simple object.Container type: Topic");
-        System.out.println("    task3 - Send text message.Container type: Queue");
-        System.out.println("    task4 - Send complex object(collection of objects). Container type: Queue");
-        System.out.println("    task5 - Send text message to specific consumer. Container type: Queue");
-        System.out.println("    task6 - Text messages accumulate until there are less than 10 ones. Then they are sended to consumer. Container type:Queue");
+        System.out.println("    test1 - Send simple object.Container type: Queue");
+        System.out.println("    test2 - Send simple object.Container type: Topic");
+        System.out.println("    test3 - Send text message.Container type: Queue");
+        System.out.println("    test4 - Send complex object(collection of objects). Container type: Queue");
+        System.out.println("    test5 - Send text message to specific consumer. Container type: Queue");
+        System.out.println("    test6 - Text messages accumulate until there are less than 10 ones. Then they are sended to consumer. Container type:Queue");
     }
 
 

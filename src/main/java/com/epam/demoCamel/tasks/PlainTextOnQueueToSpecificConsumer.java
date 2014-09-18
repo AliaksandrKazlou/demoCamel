@@ -14,7 +14,7 @@ public class PlainTextOnQueueToSpecificConsumer extends Task {
 
     @Override
     protected void prepare () {
-        body = new Formatter().format(TEXT_MESSAGE, CONSUMER_BY_DEF);
+        body = new Formatter().format(TEXT_MESSAGE, CONSUMER_BY_DEF).toString();
         headers.put(TASK, TASK_NAME);
         headers.put(CONSUMER, CONSUMER_BY_DEF);
     }
