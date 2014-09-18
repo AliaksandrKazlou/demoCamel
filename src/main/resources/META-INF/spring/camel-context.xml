@@ -7,24 +7,24 @@
           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
     <!-- for queue -->
-    <bean id="myFirstConsumer" class="Consumer">
+    <bean id="myFirstConsumer" class="com.epam.democamel.Consumer">
         <property name="name" value="first consumer"/>
     </bean>
-    <bean id="mySecondConsumer" class="Consumer">
+    <bean id="mySecondConsumer" class="com.epam.democamel.Consumer">
         <property name="name" value="second consumer"/>
     </bean>
-    <bean id="justConsumer" class="Consumer"/>
-    <bean id="splitter" class="processor.ActiveMQUnwrapper"/>
-    <bean id="myDroppedBean" class="DroppedHandler"/>
+    <bean id="justConsumer" class="com.epam.democamel.Consumer"/>
+    <bean id="deserialization" class="com.epam.democamel.processor.ActiveMQUnwrapper"/>
+    <bean id="myDroppedBean" class="com.epam.democamel.DroppedHandler"/>
 
     <!-- for topic -->
-    <bean id="a" class="Consumer"/>
-    <bean id="b" class="Consumer"/>
-    <bean id="c" class="Consumer"/>
+    <bean id="a" class="com.epam.democamel.Consumer"/>
+    <bean id="b" class="com.epam.democamel.Consumer"/>
+    <bean id="c" class="com.epam.democamel.Consumer"/>
 
     <camel:camelContext id="camelCtx">
         <camel:route id="myQueueRoute">
-            <camel:from uri="activemq://queue:inputQ?concurrentConsumers=2"/>
+            <camel:from uri="activemq://queue:Queue?concurrentConsumers=2"/>
             <!--<camel:to uri="log:com.mycompany.MyLog?level=INFO"/>-->
             <camel:log message="Me got ${body}" loggingLevel="INFO"
                        logName="com.mycompany.MyCoolRouteLog"/>
@@ -34,16 +34,16 @@
                 <camel:when>
                     <!-- USE -->
                     <!-- Requires camel-juel or juel dependency -->
-                    <camel:el>${in.headers.task == 'test5'}</camel:el>
+                    <camel:el>${in.headers.Task == 'test5'}</camel:el>
                     <!-- OR -->
                     <!--<camel:simple>${header.task} == 'test5'</camel:simple>-->
                     <camel:choice>
                         <camel:when>
-                            <camel:simple>${header.cons} == 'cons1'</camel:simple>
+                            <camel:simple>${header.Consumer} == '1'</camel:simple>
                             <camel:to uri="bean:myFirstConsumer?method=consumeFromQueue"/>
                         </camel:when>
                         <camel:when>
-                            <camel:simple>${header.cons} == 'cons2'</camel:simple>
+                            <camel:simple>${header.Consumer} == '2'</camel:simple>
                             <camel:to uri="bean:mySecondConsumer?method=consumeFromQueue"/>
                         </camel:when>
                         <camel:otherwise>
@@ -54,8 +54,9 @@
 
                 <!-- processing test6 -->
                 <camel:when>
-                    <camel:simple>${header.task} == 'test6'</camel:simple>
-                    <camel:process ref="splitter"/>
+                    <camel:simple>${header.Task} == 'test6'</camel:simple>
+                    <camel:process ref="deserialization"/>
+                    <camel:to uri="bean:justConsumer?method=consumeFromQueue"/>
                 </camel:when>
 
                 <!-- processing test1, test3, test4 -->
@@ -68,7 +69,7 @@
 
         <!-- processing test2 -->
         <camel:route id="myTopicRoute">
-            <camel:from uri="activemq://topic:myTopic"/>
+            <camel:from uri="activemq://topic:Topic"/>
             <camel:multicast>
                 <camel:to uri="bean:a?method=consumeFromTopic"/>
                 <camel:to uri="bean:b?method=consumeFromTopic"/>

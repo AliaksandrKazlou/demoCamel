@@ -1,8 +1,12 @@
-import entity.Person;
+package com.epam.democamel;
+
+import com.epam.democamel.entity.Person;
+import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Yauheni_Sidarenka on 9/11/2014.
@@ -14,26 +18,36 @@ public class Consumer {
 
     private String name = "";
 
+    private static final Random RND = new Random(System.currentTimeMillis());
+
     public void setName(final String name) {
         this.name = name;
     }
 
     public void consumeFromQueue(Object o) throws InterruptedException {
+        Thread.sleep(RND.nextInt(1000) + 1000);
         LOGGER.info(introduce() + prepareMsg(o, SRC_Q + "(Object)") + o);
     }
 
-    public void consumeFromQueue(String string) {
+    public void consumeFromQueue(String string) throws InterruptedException {
+        Thread.sleep(RND.nextInt(1000) + 1000);
         LOGGER.info(introduce() + prepareMsg(string, SRC_Q + "(String)") + string);
     }
 
-    public void consumeFromQueue(Person person) {
+    public void consumeFromQueue(Person person) throws InterruptedException {
+        Thread.sleep(RND.nextInt(1000) + 1000);
         LOGGER.info(introduce() + prepareMsg(person, SRC_Q + "(Person)") + person);
     }
 
-    public void consumeFromQueue(List list) {
+    public void consumeFromQueue(List<?> list) throws InterruptedException {
+        Thread.sleep(RND.nextInt(1000) + 1000);
         String s = introduce();
         s += prepareMsg(list, SRC_Q + "(List)") + "[";
         for (Object o : list) {
+            if (o instanceof Exchange) {
+                Exchange e = (Exchange) o;
+                o = e.getIn().getBody();
+            }
             s += "\n" + o;
         }
         s += list.size() > 0 ? "\n]" : "]";
