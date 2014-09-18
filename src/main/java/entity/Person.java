@@ -10,13 +10,13 @@ public class Person implements Serializable {
 
     private Integer age;
 
-    public Person (String name, Integer age) {
+    public Person(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
 
     @Override
-    public String toString () {
-        return "Person with name " + name + ";Age: " + age + " years old";
+    public String toString() {
+        return "Person with name " + name + "; Age: " + age + " years old";
     }
 }
