@@ -1,7 +1,10 @@
 package com.epam.democamel.entity;
 
 import java.io.Serializable;
-
+/*
+ * class Person
+ * В приложении представляет собой простой объект для передачи
+ */
 public class Person implements Serializable {
 
     private static final long serialVersionUID = -4327358834773106572L;

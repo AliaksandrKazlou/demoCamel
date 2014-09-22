@@ -6,7 +6,12 @@ import org.apache.camel.impl.DefaultExchangeHolder;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ * Класс, реализующий первую часть шаблона EnvelopeWrapper
+ * By default Exchange не сериализуемый объект
+ * В этом классе все из списка Exchange оборачиваются в DefaultExchangeHolder, который сериализует Exchange.
+ * Всё что не сериализует DefaultExchangeHolder  - запишется в лог(см. документацию по DefaultExchange Holder)
+ */
 public class ActiveMQWrapper implements Processor {
 
     @Override

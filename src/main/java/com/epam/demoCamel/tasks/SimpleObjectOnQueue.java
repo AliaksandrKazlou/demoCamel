@@ -2,6 +2,10 @@ package com.epam.democamel.tasks;
 
 import com.epam.democamel.entity.Person;
 
+/*
+ * Task №1
+ * Задача: простой объект для передачи в Queue
+ */
 public class SimpleObjectOnQueue extends Task {
 
     public static final String TASK_NAME = "test1";

@@ -2,7 +2,10 @@ package com.epam.democamel.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ * Class Student
+ * В приложении представляет собой сложный объект для передачи
+ */
 public class Student extends Person {
 
     private List<String> courses;

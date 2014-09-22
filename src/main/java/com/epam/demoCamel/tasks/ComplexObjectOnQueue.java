@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/*
+ * Task №4
+ * Задача: Коллекция сложных объектов для передачи
+ * Передаём список из 10 студентов, у каждого по 5 курсов
+ */
 public class ComplexObjectOnQueue extends Task {
 
     public static final Integer COUNT_STUDENT = 10;

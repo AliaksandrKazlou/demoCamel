@@ -2,6 +2,10 @@ package com.epam.democamel.tasks;
 
 import com.epam.democamel.entity.Person;
 
+/*
+ * Task №2
+ * Задача: простой объект для передачи в Topic
+ */
 public class SimpleObjectOnTopic extends Task {
 
     public static final String TASK_NAME = "test2";

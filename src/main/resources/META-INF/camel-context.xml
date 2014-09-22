@@ -12,21 +12,33 @@
 
     <bean id="serialization" class="com.epam.democamel.processor.ActiveMQWrapper"/>
 
+    <!--Поднимаем CamelContext -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
+        <!-- Устанавливаем ему producer'a -->
         <camel:template id="producerTemplate"/>
+        <!-- Начинается этап маршрутизации -->
         <route>
+            <!-- Секция откуда. В Producer'e мы сюда ложим все наши сообщения. Более подробно о direct на сайте Camel в разделе Components-->
             <from uri="direct:start"/>
             <choice>
+                <!-- Смотрим заголовок Task -->
                 <when>
+                    <!-- Если заголовок равен test2, то посылаем сообщение в очередь. -->
                     <simple>${headers.Task} == 'test2'</simple>
+                    <!-- URI для ActiveMQ в формате uri="[component]:[type]:[name]"-->
                     <to uri="activemq:topic:Topic"/>
                 </when>
                 <when>
                     <simple>${headers.Task} == 'test6'</simple>
+                    <!-- Pattern Aggregation -->
+                    <!-- CompletionSize - количество сообщений для аггрегирования -->
+                    <!-- groupExchanges - аттрибут, который говорит о том, что мы хотим группировать сообщения целиком. Сам устанавливает стратегию аггрегирования-->
                     <aggregate completionSize="10" groupExchanges="true">
                         <correlationExpression>
+                            <!-- Аггрегируем по Task header'у-->
                             <simple>${headers.Task}</simple>
                         </correlationExpression>
+                        <!-- Перед отправкой сериализуем(меняем формат). Шаблон EnvelopWrapper. И указываем processor, который выполнит сериализацию-->
                         <process ref="serialization"/>
                         <to uri="activemq:queue:Queue"/>
                     </aggregate>

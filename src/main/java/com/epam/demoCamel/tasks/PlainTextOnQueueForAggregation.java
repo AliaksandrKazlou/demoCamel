@@ -1,7 +1,12 @@
 package com.epam.democamel.tasks;
 
+/*
+ * Task №6
+ * Задача: Сообщение для аггрегации
+ */
 public class PlainTextOnQueueForAggregation extends Task {
 
+    //Aggregator требует, что бы у сообщений был указан CorrelationID
     private static final String POSITION = "JMSCorrelationID";
 
     private static Long COUNT = 0L;
@@ -12,6 +17,7 @@ public class PlainTextOnQueueForAggregation extends Task {
 
     public static final String TASK_NAME = "test6";
 
+    // Количество сообщений для передачи
     public static final Integer DEFAULT_REPEAT_COUNT = 15;
 
     public PlainTextOnQueueForAggregation () {

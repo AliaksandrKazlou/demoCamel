@@ -7,6 +7,7 @@ import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main (String[] args) throws Exception {
+
         switch (args.length != 0 ? args[0] : "") {
             case "-h":
                 showHelp();

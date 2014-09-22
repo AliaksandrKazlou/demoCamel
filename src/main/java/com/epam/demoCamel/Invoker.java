@@ -1,12 +1,14 @@
 package com.epam.democamel;
 
-import org.apache.camel.ProducerTemplate;
 import com.epam.democamel.tasks.Task;
-
+import org.apache.camel.ProducerTemplate;
+/*
+ * Класс, который исполняет таски.
+ */
 public class Invoker {
-
+    // Адрес для отправки
     public static final String DESTINATION = "direct:start";
-
+    // Шаблон Producer'a. Представляет базовую функциональность по отправке сообщений.
     private ProducerTemplate producer;
 
     public void setProducer (ProducerTemplate producer) {
