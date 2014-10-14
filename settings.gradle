@@ -1,3 +1,4 @@
-rootProject.name = 'democamel'
+rootProject.name = 'demoCamel'
 
-
+include 'producer'
+include 'consumer'
