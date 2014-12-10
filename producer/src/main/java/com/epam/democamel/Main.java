@@ -1,12 +1,23 @@
 package com.epam.democamel;
 
+import com.epam.democamel.builder.FileRouteBuilder;
 import com.epam.democamel.exception.TaskNotFoundException;
 import com.epam.democamel.tasks.*;
-import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
+import org.apache.camel.CamelContext;
+import org.apache.camel.impl.DefaultCamelContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
 
-    public static void main (String[] args) throws Exception {
+    private static final String CONTEXT_LOCATION = "META-INF/camel-context.xml";
+    private static final String FILE_ROUTE_TASK = "test7";
+    private static final String INCORRECT_COMMAND_MESSAGE =
+            "Incorrect command! Please type either -h for help or -t [task_name] for execute task";
+    private static final String TASK_NOT_FOUND_MESSAGE = "Task not found!";
+    private static final String INVOKER_BEAN_NAME = "invoker";
+    private static final String TASK_EXPECTED_MESSAGE = "Cannot find task name";
+
+    public static void main(String[] args) throws Exception {
 
         switch (args.length != 0 ? args[0] : "") {
             case "-h":
@@ -15,13 +26,19 @@ public class Main {
             case "-t": {
                 try {
                     if (args.length == 1) {
-                        System.out.println("Cannot find task name");
+                        System.out.println(TASK_EXPECTED_MESSAGE);
                         break;
                     }
-                    Task task = determineTask(args[1]);
-                    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("META-INF/camel-context.xml");
-                    Invoker invoker = (Invoker) context.getBean("invoker");
-                    invoker.execute(task);
+                    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(CONTEXT_LOCATION);
+                    if (args[1].compareTo(FILE_ROUTE_TASK) == 0) {
+                        CamelContext camelContext = new DefaultCamelContext();
+                        camelContext.addRoutes(new FileRouteBuilder());
+                        camelContext.start();
+                    } else {
+                        Task task = determineTask(args[1]);
+                        Invoker invoker = (Invoker) context.getBean(INVOKER_BEAN_NAME);
+                        invoker.execute(task);
+                    }
                     synchronized (Main.class) {
                         Main.class.wait();
                     }
@@ -32,11 +49,11 @@ public class Main {
             }
             break;
             default:
-                System.out.println("Incorrect command! Please type either -h for help or -t [task_name] for execute task");
+                System.out.println(INCORRECT_COMMAND_MESSAGE);
         }
     }
 
-    private static void showHelp () {
+    private static void showHelp() {
         System.out.println("Available options:");
         System.out.println("-t [task_name] - execute task");
         System.out.println("    test1 - Send simple object.Container type: Queue");
@@ -45,10 +62,13 @@ public class Main {
         System.out.println("    test4 - Send complex object(collection of objects). Container type: Queue");
         System.out.println("    test5 - Send text message to specific consumer. Container type: Queue");
         System.out.println("    test6 - Text messages accumulate until there are less than 10 ones. Then they are sended to consumer. Container type:Queue");
+        System.out.println("    test7 - Send file message with filter by extension. Container type: Queue");
+        System.out.println("    test8 - Send collection of objects with modification and sort. Container type: Queue");
+        System.out.println("    test9 - Send collection of objects, split it into messages with complex object. Container type: Queue");
     }
 
 
-    private static Task determineTask (String taskName) throws TaskNotFoundException {
+    private static Task determineTask(String taskName) throws TaskNotFoundException {
         switch (taskName) {
             case ComplexObjectOnQueue.TASK_NAME:
                 return new ComplexObjectOnQueue();
@@ -62,8 +82,15 @@ public class Main {
                 return new SimpleObjectOnQueue();
             case SimpleObjectOnTopic.TASK_NAME:
                 return new SimpleObjectOnTopic();
+            case ComplexObjectTransform.TASK_NAME: {
+                return new ComplexObjectTransform();
+            }
+            case ComplexObjectForSplitter.TASK_NAME: {
+                return new ComplexObjectForSplitter();
+            }
             default:
-                throw new TaskNotFoundException("Task not found!");
+                throw new TaskNotFoundException(TASK_NOT_FOUND_MESSAGE);
         }
     }
 }
+
