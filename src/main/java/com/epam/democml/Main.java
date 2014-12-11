@@ -1,4 +1,4 @@
-package com.epam.democamel;
+package com.epam.democml;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

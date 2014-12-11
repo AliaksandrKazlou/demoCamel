@@ -7,20 +7,20 @@
           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
     <!-- for queue -->
-    <bean id="myFirstConsumer" class="com.epam.democamel.Consumer">
+    <bean id="myFirstConsumer" class="com.epam.democml.Consumer">
         <property name="name" value="first consumer"/>
     </bean>
-    <bean id="mySecondConsumer" class="com.epam.democamel.Consumer">
+    <bean id="mySecondConsumer" class="com.epam.democml.Consumer">
         <property name="name" value="second consumer"/>
     </bean>
-    <bean id="justConsumer" class="com.epam.democamel.Consumer"/>
-    <bean id="deserialization" class="com.epam.democamel.processor.ActiveMQUnwrapper"/>
-    <bean id="myDroppedBean" class="com.epam.democamel.DroppedHandler"/>
+    <bean id="justConsumer" class="com.epam.democml.Consumer"/>
+    <bean id="deserialization" class="com.epam.democml.processor.ActiveMQUnwrapper"/>
+    <bean id="myDroppedBean" class="com.epam.democml.DroppedHandler"/>
 
     <!-- for topic -->
-    <bean id="a" class="com.epam.democamel.Consumer"/>
-    <bean id="b" class="com.epam.democamel.Consumer"/>
-    <bean id="c" class="com.epam.democamel.Consumer"/>
+    <bean id="a" class="com.epam.democml.Consumer"/>
+    <bean id="b" class="com.epam.democml.Consumer"/>
+    <bean id="c" class="com.epam.democml.Consumer"/>
 
     <camel:camelContext id="camelCtx">
         <camel:route id="myQueueRoute">
