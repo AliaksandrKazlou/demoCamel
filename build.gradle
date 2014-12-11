@@ -2,7 +2,7 @@ apply plugin:'application'
 apply plugin:'idea'
 
 version = '1.0'
-mainClassName = "com.epam.democml.Main"
+mainClassName = "com.epam.democamel.Main"
 
 repositories {
     mavenCentral()

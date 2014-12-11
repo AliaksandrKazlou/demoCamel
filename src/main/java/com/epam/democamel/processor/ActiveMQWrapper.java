@@ -1,4 +1,4 @@
-package com.epam.democml.processor;
+package com.epam.democamel.processor;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;

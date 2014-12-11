@@ -6,11 +6,11 @@
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd"
         >
 
-    <bean id="invoker" class="com.epam.democml.Invoker">
+    <bean id="invoker" class="com.epam.democamel.Invoker">
         <property name="producer" ref="producerTemplate"/>
     </bean>
 
-    <bean id="serialization" class="com.epam.democml.processor.ActiveMQWrapper"/>
+    <bean id="serialization" class="com.epam.democamel.processor.ActiveMQWrapper"/>
 
     <!--Поднимаем CamelContext -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
