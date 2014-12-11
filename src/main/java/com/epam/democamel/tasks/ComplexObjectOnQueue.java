@@ -1,6 +1,6 @@
-package com.epam.democml.tasks;
+package com.epam.democamel.tasks;
 
-import com.epam.democml.entity.Student;
+import com.epam.democamel.entity.Student;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.epam.democml.tasks;
+package com.epam.democamel.tasks;
 
 /*
  * Task №3

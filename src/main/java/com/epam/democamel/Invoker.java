@@ -1,6 +1,6 @@
-package com.epam.democml;
+package com.epam.democamel;
 
-import com.epam.democml.tasks.Task;
+import com.epam.democamel.tasks.Task;
 import org.apache.camel.ProducerTemplate;
 /*
  * Класс, который исполняет таски.
