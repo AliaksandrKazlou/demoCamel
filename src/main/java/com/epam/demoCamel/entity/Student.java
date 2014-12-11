@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Student extends Person {
 
-    private List<String> courses = new ArrayList<String>();
+    private List<String> courses = new ArrayList<>();
 
     public Student(String name, Integer age) {
         super(name, age);
@@ -18,7 +18,7 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Student: " + getName() + " {" +
                 "courses=" + courses +
                 '}';
     }

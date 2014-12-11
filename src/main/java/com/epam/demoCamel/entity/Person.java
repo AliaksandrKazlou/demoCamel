@@ -10,6 +10,10 @@ public class Person implements Serializable {
 
     private Integer age;
 
+    public String getName() {
+        return name;
+    }
+
     public Person(String name, Integer age) {
         this.name = name;
         this.age = age;

@@ -23,11 +23,11 @@
     <bean id="c" class="com.epam.democamel.Consumer"/>
 
     <camel:camelContext id="camelCtx">
-        <camel:route id="myQueueRoute">
-            <camel:from uri="activemq://queue:Queue?concurrentConsumers=2"/>
+        <camel:route>
+            <camel:from uri="activemq://queue:Queue"/>
             <!--<camel:to uri="log:com.mycompany.MyLog?level=INFO"/>-->
-            <camel:log message="Me got ${body}" loggingLevel="INFO"
-                       logName="com.mycompany.MyCoolRouteLog"/>
+            <!--<camel:log message="Me got ${body}" loggingLevel="INFO"-->
+            <!--logName="com.mycompany.MyCoolRouteLog"/>-->
             <camel:choice>
 
                 <!-- processing test5 -->
@@ -58,13 +58,30 @@
                     <camel:process ref="deserialization"/>
                     <camel:to uri="bean:justConsumer?method=consumeFromQueue"/>
                 </camel:when>
-
                 <!-- processing test1, test3, test4 -->
                 <camel:otherwise>
                     <camel:to uri="bean:justConsumer?method=consumeFromQueue"/>
                 </camel:otherwise>
             </camel:choice>
 
+        </camel:route>
+
+        <camel:route>
+            <camel:from uri="activemq://queue:TransformQueue?concurrentConsumers=2"/>
+            <camel:choice>
+                <!-- processing test8 -->
+                <camel:when>
+                    <camel:simple>${header.Task} == 'test8'</camel:simple>
+                    <camel:log message="Test 8 header involved!"/>
+                    <camel:to uri="bean:justConsumer?method=consumeFromQueue"/>
+                </camel:when>
+                <!-- processing test9 -->
+                <camel:when>
+                    <camel:simple>${header.Task} == 'test9'</camel:simple>
+                    <camel:log message="Test 9 was involved, splitter pattern example!"/>
+                    <camel:to uri="bean:justConsumer?method=consumeFromQueue"/>
+                </camel:when>
+            </camel:choice>
         </camel:route>
 
         <!-- processing test2 -->
@@ -77,6 +94,15 @@
             </camel:multicast>
         </camel:route>
 
+        <!-- processing test7 -->
+        <!--<camel:route id="fileRoute">-->
+        <!--<camel:from uri="activemq:queue:FileQueue"/>-->
+        <!--<camel:validate>-->
+        <!--<camel:simple>${header.Task} == 'test7'</camel:simple>-->
+        <!--</camel:validate>-->
+        <!--<camel:log message="Test 7 was involved, message filter pattern for file example!"/>-->
+        <!--<camel:to uri="file:D:/temp/output"/>-->
+        <!--</camel:route>-->
     </camel:camelContext>
 
 </beans>
