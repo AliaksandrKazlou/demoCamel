@@ -17,7 +17,6 @@ public class FileRouteBuilder extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        @SuppressWarnings({"unused", "resource"})
         RouteDefinition definition =
                 from(SOURCE_FOLDER_PATH).routeId(FILE_ROUTE);
         Expression expression = new SimpleExpression(TASK_NAME);

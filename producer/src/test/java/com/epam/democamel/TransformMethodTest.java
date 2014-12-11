@@ -23,6 +23,7 @@ public class TransformMethodTest extends CamelTestSupport {
         MockEndpoint mock = getMockEndpoint("mock:result");
         mock.expectedMessageCount(5);
         assertMockEndpointsSatisfied();
+
     }
 
     @Override
@@ -38,7 +39,7 @@ public class TransformMethodTest extends CamelTestSupport {
     }
 
     public ArrayList<Student> getTestStudentsList() {
-        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<Student> students = new ArrayList<>();
         Student student1 = new Student("qqq", 21);
         Student student2 = new Student("rrr", 22);
         Student student3 = new Student("eee", 23);

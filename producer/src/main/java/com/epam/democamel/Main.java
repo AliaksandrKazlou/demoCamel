@@ -5,10 +5,12 @@ import com.epam.democamel.exception.TaskNotFoundException;
 import com.epam.democamel.tasks.*;
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
 
+    private static final Logger LOGGER = Logger.getLogger(Main.class);
     private static final String CONTEXT_LOCATION = "META-INF/camel-context.xml";
     private static final String FILE_ROUTE_TASK = "test7";
     private static final String INCORRECT_COMMAND_MESSAGE =
@@ -26,7 +28,7 @@ public class Main {
             case "-t": {
                 try {
                     if (args.length == 1) {
-                        System.out.println(TASK_EXPECTED_MESSAGE);
+                        LOGGER.info(TASK_EXPECTED_MESSAGE);
                         break;
                     }
                     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(CONTEXT_LOCATION);
@@ -43,28 +45,28 @@ public class Main {
                         Main.class.wait();
                     }
                 } catch (TaskNotFoundException e) {
-                    System.out.println(e.getMessage());
+                    LOGGER.info(e.getMessage());
                     break;
                 }
             }
             break;
             default:
-                System.out.println(INCORRECT_COMMAND_MESSAGE);
+                LOGGER.info(INCORRECT_COMMAND_MESSAGE);
         }
     }
 
     private static void showHelp() {
-        System.out.println("Available options:");
-        System.out.println("-t [task_name] - execute task");
-        System.out.println("    test1 - Send simple object.Container type: Queue");
-        System.out.println("    test2 - Send simple object.Container type: Topic");
-        System.out.println("    test3 - Send text message.Container type: Queue");
-        System.out.println("    test4 - Send complex object(collection of objects). Container type: Queue");
-        System.out.println("    test5 - Send text message to specific consumer. Container type: Queue");
-        System.out.println("    test6 - Text messages accumulate until there are less than 10 ones. Then they are sended to consumer. Container type:Queue");
-        System.out.println("    test7 - Send file message with filter by extension. Container type: Queue");
-        System.out.println("    test8 - Send collection of objects with modification and sort. Container type: Queue");
-        System.out.println("    test9 - Send collection of objects, split it into messages with complex object. Container type: Queue");
+        LOGGER.info("Available options:\n " +
+                "-t [task_name] - execute task\n" +
+                "    test1 - Send simple object.Container type: Queue\n" +
+                "    test2 - Send simple object.Container type: Topic\n" +
+                "    test3 - Send text message.Container type: Queue\n" +
+                "    test4 - Send complex object(collection of objects). Container type: Queue\n" +
+                "    test5 - Send text message to specific consumer. Container type: Queue\n" +
+                "    test6 - Text messages accumulate until there are less than 10 ones. Then they are sended to consumer. Container type:Queue\n" +
+                "    test7 - Send file message with filter by extension. Container type: Queue\n" +
+                "    test8 - Send collection of objects with modification and sort. Container type: Queue\n" +
+                "    test9 - Send collection of objects, split it into messages with complex object. Container type: Queue\n");
     }
 
 
