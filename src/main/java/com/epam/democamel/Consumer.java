@@ -1,6 +1,6 @@
-package com.epam.democml;
+package com.epam.democamel;
 
-import com.epam.democml.entity.Person;
+import com.epam.democamel.entity.Person;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

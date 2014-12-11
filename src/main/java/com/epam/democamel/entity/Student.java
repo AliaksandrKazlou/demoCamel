@@ -1,4 +1,4 @@
-package com.epam.democml.entity;
+package com.epam.democamel.entity;
 
 import java.util.ArrayList;
 import java.util.List;
