@@ -1,6 +1,6 @@
-package com.epam.demo.tasks;
+package com.epam.democamel.tasks;
 
-import com.epam.demo.entity.Student;
+import com.epam.democamel.entity.Student;
 import org.apache.commons.lang.RandomStringUtils;
 
 import java.util.ArrayList;

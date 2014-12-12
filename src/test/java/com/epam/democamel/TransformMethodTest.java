@@ -1,7 +1,7 @@
-package com.epam.demo;
+package com.epam.democamel;
 
-import com.epam.demo.entity.Student;
-import com.epam.demo.processor.ListMessageSplitter;
+import com.epam.democamel.entity.Student;
+import com.epam.democamel.processor.ListMessageSplitter;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;

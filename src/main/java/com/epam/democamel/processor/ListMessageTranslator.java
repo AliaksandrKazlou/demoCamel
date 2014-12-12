@@ -1,6 +1,6 @@
-package com.epam.demo.processor;
+package com.epam.democamel.processor;
 
-import com.epam.demo.entity.Student;
+import com.epam.democamel.entity.Student;
 import org.apache.camel.Body;
 
 import java.util.List;

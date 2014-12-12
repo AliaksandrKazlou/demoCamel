@@ -1,4 +1,4 @@
-package com.epam.demo.processor;
+package com.epam.democamel.processor;
 
 import org.apache.camel.Body;
 import org.apache.camel.component.file.GenericFile;

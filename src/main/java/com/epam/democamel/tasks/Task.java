@@ -1,4 +1,4 @@
-package com.epam.demo.tasks;
+package com.epam.democamel.tasks;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,7 @@
-package com.epam.demo.processor;
+package com.epam.democamel.processor;
 
-import com.epam.demo.entity.Student;
-import com.epam.demo.tasks.Task;
+import com.epam.democamel.entity.Student;
+import com.epam.democamel.tasks.Task;
 import org.apache.camel.Body;
 import org.apache.camel.Header;
 import org.apache.camel.Message;
