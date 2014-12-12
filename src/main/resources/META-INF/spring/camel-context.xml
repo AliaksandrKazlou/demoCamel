@@ -95,14 +95,14 @@
         </camel:route>
 
         <!-- processing test7 -->
-        <!--<camel:route id="fileRoute">-->
-        <!--<camel:from uri="activemq:queue:FileQueue"/>-->
-        <!--<camel:validate>-->
-        <!--<camel:simple>${header.Task} == 'test7'</camel:simple>-->
-        <!--</camel:validate>-->
-        <!--<camel:log message="Test 7 was involved, message filter pattern for file example!"/>-->
-        <!--<camel:to uri="file:D:/temp/output"/>-->
-        <!--</camel:route>-->
+        <camel:route id="fileRoute">
+        <camel:from uri="activemq:queue:FileQueue"/>
+        <camel:validate>
+        <camel:simple>${header.Task} == 'test7'</camel:simple>
+        </camel:validate>
+        <camel:log message="Test 7 was involved, message filter pattern for file example!"/>
+        <camel:to uri="file:D:/temp/output"/>
+        </camel:route>
     </camel:camelContext>
 
 </beans>
