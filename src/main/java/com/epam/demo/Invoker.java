@@ -1,6 +1,6 @@
-package com.epam.democamel;
+package com.epam.demo;
 
-import com.epam.democamel.tasks.Task;
+import com.epam.demo.tasks.Task;
 import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 

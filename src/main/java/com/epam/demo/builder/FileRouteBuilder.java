@@ -1,7 +1,7 @@
-package com.epam.democamel.builder;
+package com.epam.demo.builder;
 
-import com.epam.democamel.processor.FileFilter;
-import com.epam.democamel.tasks.Task;
+import com.epam.demo.processor.FileFilter;
+import com.epam.demo.tasks.Task;
 import org.apache.camel.Expression;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;

@@ -6,14 +6,14 @@
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd"
         >
 
-    <bean id="invoker" class="com.epam.democamel.Invoker">
+    <bean id="invoker" class="com.epam.demo.Invoker">
         <property name="producer" ref="producerTemplate"/>
     </bean>
 
-    <bean id="serialization" class="com.epam.democamel.processor.ActiveMQWrapper"/>
-    <bean id="listMessageSplitter" class="com.epam.democamel.processor.ListMessageSplitter"/>
-    <bean id="listMessageTranslator" class="com.epam.democamel.processor.ListMessageTranslator"/>
-    <bean id="studentComparator" class="com.epam.democamel.processor.StudentComparator"/>
+    <bean id="serialization" class="com.epam.demo.processor.ActiveMQWrapper"/>
+    <bean id="listMessageSplitter" class="com.epam.demo.processor.ListMessageSplitter"/>
+    <bean id="listMessageTranslator" class="com.epam.demo.processor.ListMessageTranslator"/>
+    <bean id="studentComparator" class="com.epam.demo.processor.StudentComparator"/>
     <!--Поднимаем CamelContext -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <!-- Устанавливаем ему producer'a -->
@@ -49,7 +49,7 @@
                 <when>
                     <simple>${headers.Task} == 'test8'</simple>
                     <camel:log message="Process message: ${body}" loggingLevel="INFO"
-                               logName="com.epam.democamel"/>
+                               logName="com.epam.demo"/>
                     <transform>
                         <method bean="listMessageTranslator" method="transformList"/>
                     </transform>

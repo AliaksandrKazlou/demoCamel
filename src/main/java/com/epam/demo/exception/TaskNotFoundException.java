@@ -1,4 +1,4 @@
-package com.epam.democamel.exception;
+package com.epam.demo.exception;
 /*
  *  Пользовательское исключение
  *  На случай, если таск не будет найден.

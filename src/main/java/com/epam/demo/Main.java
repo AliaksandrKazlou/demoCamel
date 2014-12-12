@@ -1,8 +1,8 @@
-package com.epam.democamel;
+package com.epam.demo;
 
-import com.epam.democamel.builder.FileRouteBuilder;
-import com.epam.democamel.exception.TaskNotFoundException;
-import com.epam.democamel.tasks.*;
+import com.epam.demo.builder.FileRouteBuilder;
+import com.epam.demo.exception.TaskNotFoundException;
+import com.epam.demo.tasks.*;
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.log4j.Logger;

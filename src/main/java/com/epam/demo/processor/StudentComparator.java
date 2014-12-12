@@ -1,6 +1,6 @@
-package com.epam.democamel.processor;
+package com.epam.demo.processor;
 
-import com.epam.democamel.entity.Student;
+import com.epam.demo.entity.Student;
 
 import java.util.Comparator;
 

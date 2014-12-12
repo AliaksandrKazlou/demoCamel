@@ -1,6 +1,6 @@
-package com.epam.democamel.tasks;
+package com.epam.demo.tasks;
 
-import com.epam.democamel.entity.Person;
+import com.epam.demo.entity.Person;
 
 /*
  * Task №2
