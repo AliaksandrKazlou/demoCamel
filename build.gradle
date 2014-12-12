@@ -1,5 +1,5 @@
-apply plugin:'application'
-apply plugin:'idea'
+apply plugin: 'application'
+apply plugin: 'idea'
 
 version = '1.0'
 mainClassName = "com.epam.democamel.Main"
@@ -22,6 +22,7 @@ dependencies {
     compile group: 'org.apache.camel', name: 'camel-jxpath', version:'2.13.0'
     compile group: 'org.apache.activemq', name: 'activemq-camel', version: '5.9.0'
     compile group: 'org.apache.activemq', name: 'activemq-pool', version: '5.9.0'
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.3'
     compile(group: 'org.apache.xbean', name: 'xbean-spring', version: '3.15') {
         exclude(module: 'spring')
     }

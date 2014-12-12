@@ -13,7 +13,7 @@ public class PlainTextOnQueueForAggregation extends Task {
 
     private Long id;
 
-    public static final String TEXT_MESSAGE = "This is message for aggregation №";
+    public static final String TEXT_MESSAGE = "This is message for aggregation #";
 
     public static final String TASK_NAME = "test6";
 
