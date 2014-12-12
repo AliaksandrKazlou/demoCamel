@@ -11,7 +11,9 @@
     </bean>
 
     <bean id="serialization" class="com.epam.democamel.processor.ActiveMQWrapper"/>
-
+    <bean id="listMessageSplitter" class="com.epam.democamel.processor.ListMessageSplitter"/>
+    <bean id="listMessageTranslator" class="com.epam.democamel.processor.ListMessageTranslator"/>
+    <bean id="studentComparator" class="com.epam.democamel.processor.StudentComparator"/>
     <!--Поднимаем CamelContext -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <!-- Устанавливаем ему producer'a -->
@@ -43,10 +45,43 @@
                         <to uri="activemq:queue:Queue"/>
                     </aggregate>
                 </when>
+                <!-- Patterns Message Translator and Sort-->
+                <when>
+                    <simple>${headers.Task} == 'test8'</simple>
+                    <camel:log message="Process message: ${body}" loggingLevel="INFO"
+                               logName="com.epam.democamel"/>
+                    <transform>
+                        <method bean="listMessageTranslator" method="transformList"/>
+                    </transform>
+                    <sort comparatorRef="studentComparator">
+                        <simple>${body}</simple>
+                    </sort>
+                    <to uri="activemq:queue:TransformQueue"/>
+                </when>
+                <!-- Patterns Splitter-->
+                <when>
+                    <simple>${headers.Task} == 'test9'</simple>
+                    <split>
+                        <method bean="listMessageSplitter" method="splitMessage"/>
+                        <to uri="activemq:queue:TransformQueue"/>
+                    </split>
+                </when>
                 <otherwise>
                     <to uri="activemq:queue:Queue"/>
                 </otherwise>
             </choice>
         </route>
+
+        <!--This route created using Java DSL in FileRouteBuilder.java -->
+        <!--<route id="fileRoute">-->
+        <!--<from uri="file:D:/temp/input/?noop=true"/>-->
+        <!--<camel:validate>-->
+        <!--<camel:simple>${header.Task} == 'test7'</camel:simple>-->
+        <!--</camel:validate>-->
+
+        <!--<camel:log message="Test 7 was validated for consumer ${header.Consumer}"/>-->
+        <!--<camel:to uri="activemq:queue:FileQueue"/>-->
+        <!--</route>-->
+
     </camelContext>
 </beans>
