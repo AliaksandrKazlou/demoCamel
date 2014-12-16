@@ -2,13 +2,14 @@ package com.epam.democamel;
 
 import com.epam.democamel.entity.Student;
 import com.epam.democamel.processor.ListMessageSplitter;
-import com.epam.democamel.tasks.ComplexObjectForSplitter;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Aliaksandr_Kazlou1 on 12/8/2014.
@@ -17,13 +18,13 @@ public class TransformMethodTest extends CamelTestSupport {
 
     @Test
     public void testSplitter() throws Exception {
-        ComplexObjectForSplitter complexObjectForSplitter = new ComplexObjectForSplitter();
-        template.sendBodyAndHeaders("direct:start", complexObjectForSplitter.getBody(),
-                complexObjectForSplitter.getHeaders());
+        Map<String, Object> headers = new HashMap<>();
+        headers.put("Task", "test9");
+        template.sendBodyAndHeaders("direct:start", getTestStudentsList(),
+                headers);
         MockEndpoint mock = getMockEndpoint("mock:result");
         mock.expectedMessageCount(5);
         assertMockEndpointsSatisfied();
-
     }
 
     @Override
